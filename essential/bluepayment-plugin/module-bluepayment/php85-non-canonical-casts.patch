@@ -1,0 +1,26 @@
+--- a/Model/Multishipping/PlaceOrder.php
++++ b/Model/Multishipping/PlaceOrder.php
+@@ -172,10 +172,10 @@
+                 }
+ 
+                 if (!$order->getIsVirtual()
+-                    && ((double)$order->getShippingAmount() || $order->getShippingDescription())
++                    && ((float)$order->getShippingAmount() || $order->getShippingDescription())
+                 ) {
+                     $productsList[] = [
+-                        'subAmount' => $useBaseCurrency ? (double)$order->getBaseShippingAmount() : (double)$order->getShippingAmount(),
++                        'subAmount' => $useBaseCurrency ? (float)$order->getBaseShippingAmount() : (float)$order->getShippingAmount(),
+                         'params' => [
+                             'productName' => __('Shipping & Handling')->render(),
+                         ],
+--- a/Helper/Gateways.php
++++ b/Helper/Gateways.php
+@@ -407,7 +407,7 @@
+      */
+     protected function isBlikZeroEnabled(StoreInterface $store): bool
+     {
+-        return (boolean) $this->scopeConfig->getValue(
++        return (bool) $this->scopeConfig->getValue(
+             'payment/bluepayment/blik_zero',
+             ScopeInterface::SCOPE_STORE,
+             $store->getCode()

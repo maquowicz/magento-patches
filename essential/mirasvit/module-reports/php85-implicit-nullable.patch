@@ -1,0 +1,64 @@
+--- a/src/Reports/Reports/Cart/Overview.php
++++ b/src/Reports/Reports/Cart/Overview.php
+@@ -108,7 +108,7 @@
+     /**
+      * {@inheritdoc}
+      */
+-    public function getActions(ResponseItem $item, RequestInterface $request = null)
++    public function getActions(ResponseItem $item, ?RequestInterface $request = null)
+     {
+         return false;
+ 
+--- a/src/Reports/Reports/Catalog/Product.php
++++ b/src/Reports/Reports/Catalog/Product.php
+@@ -96,7 +96,7 @@
+     /**
+      * {@inheritdoc}
+      */
+-    public function getActions(ResponseItem $item, RequestInterface $request = null)
++    public function getActions(ResponseItem $item, ?RequestInterface $request = null)
+     {
+         $sku = $item->getData('catalog_product_entity|sku');
+         $id  = $item->getData('catalog_product_entity|entity_id');
+--- a/src/Reports/Model/ResourceModel/Postcode/Grid/Collection.php
++++ b/src/Reports/Model/ResourceModel/Postcode/Grid/Collection.php
+@@ -92,7 +92,7 @@
+      * @return $this
+      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+      */
+-    public function setSearchCriteria(SearchCriteriaInterface $searchCriteria = null)
++    public function setSearchCriteria(?SearchCriteriaInterface $searchCriteria = null)
+     {
+         return $this;
+     }
+@@ -123,7 +123,7 @@
+      * {@inheritdoc}
+      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
+      */
+-    public function setItems(array $items = null)
++    public function setItems(?array $items = null)
+     {
+         return $this;
+     }
+--- a/src/Reports/Console/Command/CronCommand.php
++++ b/src/Reports/Console/Command/CronCommand.php
+@@ -65,7 +65,7 @@
+     /**
+      * {@inheritdoc}
+      */
+-    protected function execute(InputInterface $input, OutputInterface $output)
++    protected function execute(InputInterface $input, OutputInterface $output): int
+     {
+         $this->state->setAreaCode('frontend');
+ 
+--- a/src/Reports/Console/Command/GeoImportCommand.php
++++ b/src/Reports/Console/Command/GeoImportCommand.php
+@@ -40,7 +40,7 @@
+      * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+      *  @SuppressWarnings(PHPMD.NPathComplexity)
+      */
+-    protected function execute(InputInterface $input, OutputInterface $output)
++    protected function execute(InputInterface $input, OutputInterface $output): int
+     {
+         $this->appState->setAreaCode('frontend');
+ 

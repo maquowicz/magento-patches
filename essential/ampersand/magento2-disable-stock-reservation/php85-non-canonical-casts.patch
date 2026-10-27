@@ -1,0 +1,11 @@
+--- a/src/Model/GetItemsToDeductFromOrder.php
++++ b/src/Model/GetItemsToDeductFromOrder.php
+@@ -152,7 +152,7 @@
+     private function castQty(Item $item, $qty)
+     {
+         if ($item->getIsQtyDecimal()) {
+-            $qty = (double)$qty;
++            $qty = (float)$qty;
+         } else {
+             $qty = (int)$qty;
+         }

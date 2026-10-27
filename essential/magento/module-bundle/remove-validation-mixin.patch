@@ -1,0 +1,29 @@
+--- a/view/frontend/requirejs-config.js
++++ b/view/frontend/requirejs-config.js
+@@ -1,6 +1,6 @@
+ /**
+- * Copyright 2014 Adobe
+- * All Rights Reserved.
++ * Copyright © Magento, Inc. All rights reserved.
++ * See COPYING.txt for license details.
+  */
+ 
+ var config = {
+@@ -12,11 +12,10 @@
+             productSummary: 'Magento_Bundle/js/product-summary'
+         }
+     },
+-    config: {
+-        mixins: {
+-            'mage/validation': {
+-                'Magento_Bundle/js/validation': true
+-            }
+-        }
+-    }
++    /*
++     * Natavit: the `mage/validation` mixin (Magento_Bundle/js/validation) was
++     * removed — it only customises error placement for bundle-product forms and
++     * loaded on every page that uses validation. NOTE: vendor file edit —
++     * re-apply after `composer update`.
++     */
+ };
