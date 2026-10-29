@@ -1,0 +1,25 @@
+--- a/Helper/Data.php
++++ b/Helper/Data.php
+@@ -89,16 +89,19 @@
+     public function getCaptcha($formId)
+     {
+-        if (!array_key_exists($formId, $this->_captcha)) {
++        // PHP 8.5 deprecates null array keys/offsets ("use an empty string"); the
++        // AJAX login plugin passes null when the request has no captcha form id.
++        $key = (string) $formId;
++        if (!array_key_exists($key, $this->_captcha)) {
+             $captchaType = ucfirst($this->getConfig('type'));
+             if (!$captchaType) {
+                 $captchaType = self::DEFAULT_CAPTCHA_TYPE;
+             } elseif ($captchaType == 'Default') {
+                 $captchaType = $captchaType . 'Model';
+             }
+ 
+-            $this->_captcha[$formId] = $this->_factory->create($captchaType, $formId);
++            $this->_captcha[$key] = $this->_factory->create($captchaType, $formId);
+         }
+-        return $this->_captcha[$formId];
++        return $this->_captcha[$key];
+     }
+ 
+     /**
